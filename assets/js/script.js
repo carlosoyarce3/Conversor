@@ -9,8 +9,15 @@ const convertir = async () =>{
     const monto = document.querySelector("#ingreso").value;
     const moneda = document.querySelector("#monedas").value;
     if(datos[moneda] != undefined){
-        result.innerHTML = `<span>${new Intl.NumberFormat('en-DE').format(monto)}</span> CLP, son <span>${new Intl.NumberFormat('en-DE').format(monto / datos[moneda].valor)}</span> ${moneda.toUpperCase()}S`
+        if(moneda == 'dolar'){
+            result.innerHTML = `<span>${new Intl.NumberFormat('en-DE').format(monto)}</span> CLP, son <span>${new Intl.NumberFormat('en-DE').format(monto / datos[moneda].valor)}</span> Dolares`
+        }else if(moneda == "uf"){
+            result.innerHTML = `<span>${new Intl.NumberFormat('en-DE').format(monto)}</span> CLP, son <span>${new Intl.NumberFormat('en-DE').format(monto / datos[moneda].valor)}</span> UF`
+        }else{
+            result.innerHTML = `<span>${new Intl.NumberFormat('en-DE').format(monto)}</span> CLP, son <span>${new Intl.NumberFormat('en-DE').format(monto / datos[moneda].valor)}</span> Euros`
+        }
         grafico(moneda);
+        
     }else{
         result.innerHTML = "Valor ingresado no es valido"
     }
